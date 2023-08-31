@@ -29,6 +29,18 @@ struct node *insert(struct node *node, int key)
     return node;
 }
 
+void inorder(struct node *node)
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    inorder(node->left);
+    printf("%d ", node->key);
+    inorder(node->right);
+}
+
 int main()
 {
 
@@ -38,6 +50,8 @@ int main()
     insert(root, 10);
     insert(root, 20);
     insert(root, 8);
+
+    inorder(root);
 
     return 0;
 }
