@@ -12,7 +12,7 @@ public:
 void append(Node **head_ref, int item);
 void printList(Node **head_ref);
 void deleteEvenNumbers(Node **head_ref);
-void printMiddle(Node *head_ref);
+void printMiddle(Node **head_ref);
 
 int main()
 {
@@ -42,7 +42,7 @@ int main()
 
     cout << "Middle element: ";
 
-    printMiddle(head);
+    printMiddle(&head);
 
     cout << endl;
 
@@ -117,10 +117,10 @@ void deleteEvenNumbers(Node **head_ref)
     }
 }
 
-void printMiddle(Node *head_ref)
+void printMiddle(Node **head_ref)
 {
-    Node *slow = head_ref;
-    Node *fast = head_ref;
+    Node *slow = *head_ref;
+    Node *fast = *head_ref;
 
     while (fast != NULL && fast->next != NULL)
     {
