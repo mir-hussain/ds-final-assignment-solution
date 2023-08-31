@@ -12,17 +12,22 @@ public:
 void append(Node **head_ref, int item);
 void printList(Node **head_ref);
 
+void deleteEvenNumbers(Node **head_ref);
 int main()
 {
 
+    int arr[] = {5, 6, 18, 9, 2, 7, 8, 3, 1};
+
     Node *head = NULL;
 
-    append(&head, 1);
-    append(&head, 2);
-    append(&head, 3);
-    append(&head, 4);
-    append(&head, 5);
-    append(&head, 6);
+    for (int numb : arr)
+    {
+        append(&head, numb);
+    }
+
+    printList(&head);
+
+    deleteEvenNumbers(&head);
 
     printList(&head);
 
@@ -66,4 +71,33 @@ void printList(Node **head_ref)
     }
 
     cout << endl;
+}
+
+void deleteEvenNumbers(Node **head_ref)
+{
+    Node *prev = NULL;
+    Node *current = *head_ref;
+
+    while (current != NULL)
+    {
+        if (current->data % 2 == 0)
+        {
+            if (prev == NULL)
+            {
+                *head_ref = current->next;
+            }
+            else
+            {
+                prev->next = current->next;
+            }
+
+            delete current;
+            current = prev->next;
+        }
+        else
+        {
+            prev = current;
+            current = current->next;
+        }
+    }
 }
