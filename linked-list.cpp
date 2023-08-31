@@ -11,8 +11,9 @@ public:
 
 void append(Node **head_ref, int item);
 void printList(Node **head_ref);
-
 void deleteEvenNumbers(Node **head_ref);
+void printMiddle(Node *head_ref);
+
 int main()
 {
 
@@ -25,11 +26,25 @@ int main()
         append(&head, numb);
     }
 
+    cout << "Full list: ";
+
     printList(&head);
+
+    cout << "\n";
 
     deleteEvenNumbers(&head);
 
+    cout << "After deleting the even numbers: ";
+
     printList(&head);
+
+    cout << "\n";
+
+    cout << "Middle element: ";
+
+    printMiddle(head);
+
+    cout << endl;
 
     return 0;
 }
@@ -100,4 +115,18 @@ void deleteEvenNumbers(Node **head_ref)
             current = current->next;
         }
     }
+}
+
+void printMiddle(Node *head_ref)
+{
+    Node *slow = head_ref;
+    Node *fast = head_ref;
+
+    while (fast != NULL && fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    cout << slow->data << endl;
 }
