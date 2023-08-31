@@ -62,7 +62,14 @@ struct Stack
 
     void printStack()
     {
-        for (int i = 0; i <= top; i++)
+
+        if (isEmpty())
+        {
+            cout << "Stack is empty." << endl;
+            return;
+        }
+
+        for (int i = top; i >= 0; i--)
         {
             cout << stack[i] << endl;
         }

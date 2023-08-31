@@ -36,14 +36,18 @@ struct Stack
         stack[top] = value;
     }
 
-    void pop()
+    int pop()
     {
         if (isEmpty())
         {
             cout << "Stack is empty. Cannot pop." << endl;
-            return;
+            return -1;
         }
+        int elementToBePoped = stack[top];
+
         top--;
+
+        return elementToBePoped;
     }
 
     int peak()
@@ -58,7 +62,7 @@ struct Stack
 
     void printStack()
     {
-        for (int i = 0; i <= top; i++)
+        for (int i = top; i >= 0; i--)
         {
             cout << stack[i] << endl;
         }
@@ -67,17 +71,25 @@ struct Stack
 
 int main()
 {
-    Stack stack1(10);
-    stack1.push(10);
-    stack1.push(20);
-    stack1.push(30);
-    stack1.printStack();
 
-    Stack stack2(20);
-    stack2.push(40);
-    stack2.push(50);
-    stack2.push(60);
-    stack2.printStack();
+    int a[10] = {2, 4, 7, 23, 6, 3, 7, 24, 8, 22};
+    Stack stack(10);
+
+    int targetIndex = 5;
+
+    for (int i = 0; i < targetIndex; i++)
+    {
+        stack.push(a[i]);
+    }
+
+    for (int i = targetIndex + 1; i < 10; i++)
+    {
+        stack.push(a[i]);
+    }
+
+    cout << "Array after removing 5th indexed element:" << endl;
+    stack.printStack();
+    cout << "=====================" << endl;
 
     return 0;
 }
